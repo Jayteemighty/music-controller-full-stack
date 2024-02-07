@@ -3,13 +3,7 @@ import RoomJoinPage from "./RoomJoinPage";
 import CreateRoomPage from "./CreateRoomPage";
 import Room from "./Room";
 import { Grid, Button, ButtonGroup, Typography } from "@material-ui/core";
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link,
-  Redirect,
-} from "react-router-dom";
+import { BrowserRouter as Router, Route, Link, redirect } from 'react-router-dom';
 import Info from "./Info";
 
 export default class HomePage extends Component {
@@ -65,13 +59,13 @@ export default class HomePage extends Component {
   render() {
     return (
       <Router>
-        <Switch>
+        <Routes>
           <Route
             exact
             path="/"
             render={() => {
               return this.state.roomCode ? (
-                <Redirect to={`/room/${this.state.roomCode}`} />
+                <redirect to={`/room/${this.state.roomCode}`} />
               ) : (
                 this.renderHomePage()
               );
@@ -86,7 +80,7 @@ export default class HomePage extends Component {
               return <Room {...props} leaveRoomCallback={this.clearRoomCode} />;
             }}
           />
-        </Switch>
+        </Routes>
       </Router>
     );
   }
